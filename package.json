@@ -1,0 +1,19 @@
+{
+  "name": "data-for-dutten",
+  "description": "",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "webpack": "webpack",
+    "scraper": "node scraper/scraper.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "puppeteer": "^5.2.1",
+    "webpack": "^4.44.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.3",
+    "webpack-cli": "^3.3.12"
+  }
+}
