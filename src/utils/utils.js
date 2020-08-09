@@ -1,12 +1,4 @@
 export class Utils {
-    static matchRuleShort(str, rule) {
-        return new RegExp("^" + rule.split("*").join(".*") + "$").test(str);
-    }
-
-    static isNumeric(n) {
-        return !isNaN(parseFloat(n)) && isFinite(n);
-    }
-
     static getCourse() {
         if(!window || !location) {
             return undefined;

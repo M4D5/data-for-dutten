@@ -187,7 +187,7 @@ function computeLazyScore(percentPassed, workloadScore) {
     return (percentPassed + (workloadScore * 20)) / 2;
 }
 
-function getBaseData(evaluations, gradeHistory) {
+function getBaseData(courseInfo, evaluations, gradeHistory) {
     const data = {};
     const courseNumbers = Object.keys(gradeHistory);
 
@@ -196,6 +196,8 @@ function getBaseData(evaluations, gradeHistory) {
         const workloadScore = getLatestWorkloadScore(evaluations[course]);
 
         data[course] = {
+            courseName: courseInfo[course]?.courseTitle,
+            schedulePlacements: courseInfo[course]?.schedulePlacements,
             averageGrade: getLatestAverageGrade(gradeHistory[course]),
             percentPassed: percentPassed,
             workloadScore: workloadScore,
@@ -250,8 +252,8 @@ function percentilesFor(data, propertyGetter, percentilePropertySetter) {
     }
 }
 
-function process(evaluations, gradeHistory) {
-    const data = getBaseData(evaluations, gradeHistory);
+function process(courseInfo, evaluations, gradeHistory) {
+    const data = getBaseData(courseInfo, evaluations, gradeHistory);
 
     computeGradePercentiles(data);
     computeWorkloadScorePercentiles(data);

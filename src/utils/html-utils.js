@@ -40,7 +40,7 @@ export class HtmlUtils {
         this.addAttribute(infoLinkContainerNode, 'class', 'info-link');
 
         const infoLinkNode = document.createElement('a');
-        this.addAttribute(infoLinkNode, 'href', 'https://github.com/OskarNS/dtu-course-analyzer/blob/master/README.md');
+        this.addAttribute(infoLinkNode, 'href', 'https://m4d5.github.io/datafordutten/#/guide');
         this.addAttribute(infoLinkNode, 'target', '_blank');
 
         infoLinkNode.appendChild(document.createTextNode('What is this?'));

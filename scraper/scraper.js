@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const CourseNumbers = require('./course-numbers')
+const CourseInfo = require('./course-info')
 const CourseLinks = require('./course-links')
 const GradeHistory = require('./grade-history')
 const Evaluations = require('./evaluations')
@@ -21,6 +22,10 @@ async function fullScrape() {
     await page.close();
     writeFile('course-numbers', courseNumbers);
     console.log(`Retrieved ${courseNumbers.length} course numbers...`);
+
+    const courseInfo = await CourseInfo.get(browser, courseNumbers);
+    writeFile('course-info', courseInfo);
+    console.log('Retrieved all course information...');
 
     const links = await CourseLinks.get(browser, courseNumbers);
     writeFile('course-links', links);
@@ -68,6 +73,11 @@ async function main() {
     // console.log('Initialized Browser');
 
     // const courseNumbers = readFile('course-numbers');
+    //
+    // const courseInfo = await CourseInfo.get(browser, courseNumbers);
+    // writeFile('course-info', courseInfo);
+    // console.log('Retrieved all course information...');
+
     // const courseLinks = await CourseLinks.get(browser, courseNumbers);
     //
     // writeFile('course-links', courseLinks);
@@ -86,8 +96,10 @@ async function main() {
 
     const evaluations = readFile('evaluations');
     const gradeHistory = readFile('grade-history');
+    const courseInfo = readFile('course-info');
 
-    const data = DataProcessing.process(evaluations, gradeHistory);
+    //
+    const data = DataProcessing.process(courseInfo, evaluations, gradeHistory);
     writeFile('data', data);
     console.log('Processed all data...');
 
